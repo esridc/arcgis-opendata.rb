@@ -1,6 +1,7 @@
 require 'opendata/version'
 require 'faraday'
 require 'uri'
+require 'pry'
 
 module Opendata
   class Client
@@ -12,7 +13,7 @@ module Opendata
 
     # For making requets at /api/v2/datasets
     def dataset_list(params = {})
-      connection.get("#{DATASETS_API_PATH}")
+      connection.get(DATASETS_API_PATH)
     end
 
     # For making requests at /api/v2/datasets/{:id}
@@ -44,7 +45,7 @@ module Opendata
     
     attr_reader :connection
 
-    DATASETS_API_PATH = '/api/datasets'.freeze
+    DATASETS_API_PATH = '/api/v2/datasets'.freeze
 
     DEFAULT_HEADERS = {
       headers: {

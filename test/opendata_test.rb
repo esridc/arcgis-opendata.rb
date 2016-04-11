@@ -15,4 +15,18 @@ class OpendataTest < Minitest::Test
 
     assert_equal "q=census+blocks&includes=organizations", query_string
   end
+
+  def test_that_client_converts_nested_params_to_query_string
+    client = ::Opendata::Client.new("https://opendata.arcgis.com")
+    query_string = client.param_to_query_string(page: {size: 25, number: 2}, fields: { datasets: 'title,url,description' })
+
+    assert_equal "page%5Bsize%5D=25&page%5Bsize%5D%5Bnumber%5D=2&fields%5Bdatasets%5D=title%2Curl%2Cdescription", query_string
+  end
+
+  def test_that_client_can_handle_normal_and_nested_params
+    client = ::Opendata::Client.new("https://opendata.arcgis.com")
+    query_string = client.param_to_query_string(q: 'land value increase 2015',includes:'organizations',page:{size: 25, number: 2}, fields:{ datasets: 'title,url,description' })
+
+    assert_equal "q=land+value+increase+2015&includes=organizations&page%5Bsize%5D=25&page%5Bsize%5D%5Bnumber%5D=2&fields%5Bdatasets%5D=title%2Curl%2Cdescription", query_string
+  end
 end
