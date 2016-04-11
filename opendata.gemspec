@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "opendata"
   spec.version       = Opendata::VERSION
   spec.authors       = ["Alexander Harris"]
-  spec.email         = ["harris.alexk@gmail.com"]
+  spec.email         = ["alexander_harris@esri.com"]
 
   spec.summary       = %q{Ruby Client for the ArcGIS Open Data API.}
   spec.description   = %q{Ruby Client for the ArcGIS Open Data API built on top of Faraday.}
