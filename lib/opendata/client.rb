@@ -1,7 +1,6 @@
 require 'opendata/version'
 require 'faraday'
 require 'uri'
-require 'pry'
 
 module Opendata
   class Client
@@ -13,14 +12,14 @@ module Opendata
 
     # For making requets at /api/v2/datasets
     def dataset_list(params = {})
-      connection.get(DATASETS_API_PATH)
+      connection.get(DATASETS_API_PATH + param_to_query_string(params))
     end
 
     # For making requests at /api/v2/datasets/{:id}
     def dataset_show(id, params = {})
       raise '#dataset_show must receive a dataset id' if id.nil?
 
-      connection.get("#{DATASETS_API_PATH}/#{id}")
+      connection.get(DATASETS_API_PATH + "/#{id}" + param_to_query_string(params))
     end
 
     def param_to_query_string(params)
@@ -38,7 +37,9 @@ module Opendata
         end
       end
 
-      URI.encode_www_form(adjusted_params)
+      query_string = URI.encode_www_form(adjusted_params)
+
+      query_string == "" ? query_string : "?#{query_string}"
     end
 
     private
