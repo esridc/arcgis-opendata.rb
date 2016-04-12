@@ -2,7 +2,7 @@ require 'test_helper'
 
 class OpendataTest < Minitest::Test
   def test_that_it_has_a_version_number
-    assert_equal "0.0.7", ::Opendata::VERSION
+    assert_equal "0.0.7.1", ::Opendata::VERSION
   end
 
   def test_that_it_can_instantiate_client_instance
