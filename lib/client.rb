@@ -19,13 +19,13 @@ module Opendata
     # @param params [Hash] query parameters for Dataset resources
     # @return [Object] Faraday::Response object
     def dataset_list(params = {})
-      connection.get(dataset_list_request(params))
+      connection.get(dataset_list_url(params))
     end
 
     # Makes requests for 'logical collections' of Dataset resources (zero-to-many potential dataset resources)
     # @param params [Hash] query parameters for Dataset resources
     # @return [String] request url based on the parameters specfied
-    def dataset_list_request(params = {})
+    def dataset_list_url(params = {})
       DATASETS_API_PATH + param_to_query_string(params)
     end
 

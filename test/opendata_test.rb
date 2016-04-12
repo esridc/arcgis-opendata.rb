@@ -50,4 +50,20 @@ class OpendataTest < Minitest::Test
 
     assert_instance_of Faraday::Response, resp
   end
+
+  def test_that_it_dataset_list_url_returns_correct_request_url
+    client = ::Opendata::Client.new("https://opendata.arcgis.com")
+    url = client.dataset_list_url(q: 'shipping',includes:'organizations',page:{size: 25, number: 2}, fields:{ datasets: 'title,url,description' })
+
+    assert_equal "/api/v2/datasets?q=shipping&includes=organizations&page%5Bsize%5D=25&page%5Bsize%5D%5Bnumber%5D=2&fields%5Bdatasets%5D=title%2Curl%2Cdescription", url
+  end
+
+  def test_that_it_dataset_show_request_returns_correct_request_url
+    client = ::Opendata::Client.new("https://opendata.arcgis.com")
+    url = client.dataset_show_url('c2f5c97734084e2f953135d18452a1ec_0', 
+                                  include: 'organizations,sites,groups', fields: { sites: 'title,url'})
+    
+    assert_equal '/api/v2/datasets/c2f5c97734084e2f953135d18452a1ec_0?include=organizations%2Csites%2Cgroups&fields%5Bsites%5D=title%2Curl', url
+  end
+
 end
