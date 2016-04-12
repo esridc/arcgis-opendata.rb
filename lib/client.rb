@@ -1,9 +1,8 @@
+require 'version'
 require 'faraday'
 require 'uri'
 
 module Opendata
-
-  VERSION = '0.0.5'.freeze
 
   class Client
 
@@ -20,16 +19,31 @@ module Opendata
     # @param params [Hash] query parameters for Dataset resources
     # @return [Object] Faraday::Response object
     def dataset_list(params = {})
-      connection.get(DATASETS_API_PATH + param_to_query_string(params))
+      connection.get(dataset_list_request(params))
+    end
+
+    # Makes requests for 'logical collections' of Dataset resources (zero-to-many potential dataset resources)
+    # @param params [Hash] query parameters for Dataset resources
+    # @return [String] request url based on the parameters specfied
+    def dataset_list_request(params = {})
+      DATASETS_API_PATH + param_to_query_string(params)
     end
 
     # Makes requests for a 'logical object' for a specific Dataset resource (zero-to-one potential dataset resources)
     # @param id [String] The dataset id
     # @param params [Hash] Additional request parameters
+    # @return [Object] Faraday::Response object
     def dataset_show(id, params = {})
       raise '#dataset_show must receive a dataset id' if id.nil?
+      connection.get(dataset_show_url(id, params))
+    end
 
-      connection.get(DATASETS_API_PATH + "/#{id}" + param_to_query_string(params))
+    # Returns the url based on the id and url parameters specified
+    # @param id [String] The dataset id
+    # @param params [Hash] Additional request parameters
+    # @return [String] request url based on id and parameters specified
+    def dataset_show_url(id, params = {})
+      DATASETS_API_PATH + "/#{id}" + param_to_query_string(params)
     end
 
     def param_to_query_string(params)
