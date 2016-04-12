@@ -16,7 +16,20 @@ module Opendata
     end
 
     # Makes requests for 'logical collections' of Dataset resources (zero-to-many potential dataset resources)
-    # @param params [Hash] query parameters for Dataset resources
+    # @param [Hash] params query parameters for Dataset resources
+    # @option params [String] :q The query string for searching against datasets
+    # @option params [String] :include Comma-separate list of related resources to include. valid options are: 'organizations', 'groups', 'sites', 'items'
+    # @option params [String] :sort Sort criteria for the request. prepend a '-' to make the sort descending.
+    # @option params [Hash] :page Paging on the request. use { page: {size: Integer}} for page size and { page: { number: Integer}} for the page number 
+    # @option params [Hash] :fields The attribute subset you want returned for each object. Use like {fields: { datasets: 'title,url'}}
+    #
+    # @example Search for census datasets, 25 per page and include their related organizations and sites
+    #   client = Opendata.new('https://opendata.arcgis.com')
+    #   client.dataset_list(q: 'census', page: { size: 25 }, include: 'organizations,sites')
+    # @example Search for parcel datasets, second page, and include their related organizations and filter the dataset fields to title and url
+    #   client = Opendata.new('https://opendata.arcgis.com')
+    #   client.dataset_list(q: 'parcels', page: { number: 2 }, include: 'organizations', fields: { datasets: 'title,url'})
+    #
     # @return [Object] Faraday::Response object
     def dataset_list(params = {})
       connection.get(dataset_list_url(params))
@@ -24,6 +37,11 @@ module Opendata
 
     # Makes requests for 'logical collections' of Dataset resources (zero-to-many potential dataset resources)
     # @param params [Hash] query parameters for Dataset resources
+    # @example Get the request url for a search for census datasets, 25 per page and include their related organizations and sites
+    #   client = Opendata.new('https://opendata.arcgis.com')
+    #   client.dataset_list_url(q: 'census', page: { size: 25 }, include: 'organizations,sites')
+    #   #=> "/api/v2/datasets?q=census&page%5Bsize%5D=25&include=organizations%2Csites"
+    #
     # @return [String] request url based on the parameters specfied
     def dataset_list_url(params = {})
       DATASETS_API_PATH + param_to_query_string(params)
@@ -32,6 +50,14 @@ module Opendata
     # Makes requests for a 'logical object' for a specific Dataset resource (zero-to-one potential dataset resources)
     # @param id [String] The dataset id
     # @param params [Hash] Additional request parameters
+    #
+    # @example Retrive a dataset and related organizations and sites
+    #   client = Opendata.new('https://opendata.arcgis.com')
+    #   client.dataset_show('c92b122901ad40ee897d36b1a21f3187_11', include: 'organizations,sites')
+    #
+    # @example Retrive a dataset and specify a subset of fields (title,url,description,thumbnail)
+    #   client = Opendata.new('https://opendata.arcgis.com')
+    #   client.dataset_show('c92b122901ad40ee897d36b1a21f3187_11', fields: { datasets: 'title,url,description,thumbnail'})
     # @return [Object] Faraday::Response object
     def dataset_show(id, params = {})
       raise '#dataset_show must receive a dataset id' if id.nil?
@@ -41,6 +67,10 @@ module Opendata
     # Returns the url based on the id and url parameters specified
     # @param id [String] The dataset id
     # @param params [Hash] Additional request parameters
+    # @example Get the requets url for retrieving a single dataset and its related organizations and sites
+    #   client = Opendata.new('https://opendata.arcgis.com')
+    #   client.dataset_show_url('c92b122901ad40ee897d36b1a21f3187_11', include: 'organizations,sites')
+    #   #=> "/api/v2/datasets/c92b122901ad40ee897d36b1a21f3187_11?include=organizations%2Csites"
     # @return [String] request url based on id and parameters specified
     def dataset_show_url(id, params = {})
       DATASETS_API_PATH + "/#{id}" + param_to_query_string(params)
