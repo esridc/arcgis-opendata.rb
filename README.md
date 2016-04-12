@@ -8,8 +8,14 @@ TODO: Delete this and the text above, and describe your gem
 
 Add this line to your application's Gemfile:
 
+Use this to reference the latest source directly
+````ruby
+gem "arcgis-opendata", :git => "git://github.com/esridc/arcgis-opendata.rb.git", require: 'opendata'
+````
+
+Use this to pull the gem from rubygems.org
 ```ruby
-gem 'opendata'
+gem 'arcgis-opendata', require: 'opendata'
 ```
 
 And then execute:
@@ -18,7 +24,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install opendata
+    $ gem install arcgis-opendata
 
 ## Usage
 
