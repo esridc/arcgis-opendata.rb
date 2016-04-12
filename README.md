@@ -29,6 +29,23 @@ Or install it yourself as:
 
     $ gem install arcgis-opendata
 
+## Local Docs
+
+If you want to generate docs locally you can do so with yardoc
+
+    $ bundle
+
+And then:
+
+    $ open doc/index.html
+
+Or:
+
+    $ open doc/Opendata.html
+
+
+You should be able to use the tabs on the top right corner to pull up a Class List, Method List, and File List.
+
 ## Usage
 
 The main class the gem provides is `Opendata::Client`, which can be used to query and fetch
