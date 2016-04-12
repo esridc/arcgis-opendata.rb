@@ -88,9 +88,9 @@ response = client.dataset_show('4df13_11', include: 'organizations,groups')
 
 ### Learn how the parameters turn into request urls
 
-If you're curious about how urls are turned into API calls there are public methods that return the urls that would be created
-based on the parameters you pass in. I'm a fan of not completely abstracting the underlying API, and I also like urls a lot so
-we have these methods to allow developers to learn how urls are constructed.
+If you're curious about how the parameters you pass to `dataset_list` and `dataset_show` are turned into API calls there are public methods that return the urls that 
+would be sent based on the parameters you pass in. I'm a fan of not completely obscuring the underlying web API so thera are some built-in public methods to learn how
+the urls work
 
 ```ruby
 client = Opendata.new('https://opendata.arcgis.com')
