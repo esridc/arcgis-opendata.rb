@@ -1,8 +1,10 @@
-require 'opendata/version'
 require 'faraday'
 require 'uri'
 
 module Opendata
+
+  VERSION = '0.0.1'.freeze
+
   class Client
     
     def initialize(url = nil, options = {})
@@ -51,7 +53,7 @@ module Opendata
     DEFAULT_HEADERS = {
       headers: {
         'Content-Type' => 'application/vnd.api+json',
-        'User-Agent' => "ArcGIS Open Data Ruby Client v#{Opendata::VERSION}"
+        'User-Agent' => "ArcGIS Open Data Ruby Client v#{VERSION}"
       }
     }
   end

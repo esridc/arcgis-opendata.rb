@@ -1,5 +1,4 @@
-require "opendata/version"
-require "opendata/client"
+require "client"
 
 module Opendata
 
