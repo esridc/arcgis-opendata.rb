@@ -2,6 +2,10 @@
 
 # Opendata
 
+## TODO
+
+- use webmock + vcr or some alternative strategy for mocking http calls
+
 ## Installation
 
 Add this line to your application's Gemfile:
