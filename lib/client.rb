@@ -3,7 +3,7 @@ require 'uri'
 
 module Opendata
 
-  VERSION = '0.0.1'.freeze
+  VERSION = '0.0.2'.freeze
 
   class Client
 
