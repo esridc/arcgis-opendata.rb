@@ -67,7 +67,6 @@ Parameters supported for `dataset_show`
 | include   | String | comma-separate list of resources to 'side-load' | `client#dataset_list(include: 'organizations,sites')` |
 | fields    | nested | allows the client to specify a subset of attributes to be returned by the API | `client#dataset_list(fields: { datasets: 'title,url'})` |
 
-
 Make queries for datasets
 
 ```ruby
@@ -90,8 +89,8 @@ response = client.dataset_show('4df13_11', include: 'organizations,groups')
 ### Learn how the parameters turn into request urls
 
 If you're curious about how the parameters you pass to `dataset_list` and `dataset_show` are turned into API calls there are public methods that return the urls that 
-would be sent based on the parameters you pass in. I'm a fan of not completely obscuring the underlying web API so thera are some built-in public methods to learn how
-the urls work
+would be sent based on the parameters you pass in. I'm a fan of not completely obscuring the underlying web API so thera are built-in public methods to learn how
+the parameters turn into request urls. Some examples are below.
 
 ```ruby
 client = Opendata.new('https://opendata.arcgis.com')
