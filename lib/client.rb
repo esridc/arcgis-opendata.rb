@@ -16,12 +16,12 @@ module Opendata
     end
 
     # Makes requests for 'logical collections' of Dataset resources (zero-to-many potential dataset resources)
-    # @param [Hash] params query parameters for Dataset resources
+    # @param params [Hash] query parameters for Dataset resources
     # @option params [String] :q The query string for searching against datasets
     # @option params [String] :include Comma-separate list of related resources to include. valid options are: 'organizations', 'groups', 'sites', 'items'
     # @option params [String] :sort Sort criteria for the request. prepend a '-' to make the sort descending.
-    # @option params [Hash] :page Paging on the request. use { page: {size: Integer}} for page size and { page: { number: Integer}} for the page number 
-    # @option params [Hash] :fields The attribute subset you want returned for each object. Use like {fields: { datasets: 'title,url'}}
+    # @option params [Hash] :page Paging on the request. Use page[size] for the number of results per page and  page[number] for the page number 
+    # @option params [Hash] :fields The attribute subset you want returned for each object. 
     #
     # @example Search for census datasets, 25 per page and include their related organizations and sites
     #   client = Opendata.new('https://opendata.arcgis.com')

@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["alexander_harris@esri.com"]
 
   spec.summary       = %q{Ruby Client for the ArcGIS Open Data API.}
-  spec.description   = %q{Ruby Client for the ArcGIS Open Data API built on top of Faraday.}
+  spec.description   = %q{Ruby Client for the ArcGIS Open Data API.}
   spec.homepage      = "https://github.com/esridc/arcgis-opendata.rb"
   spec.license       = "MIT"
 
