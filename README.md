@@ -64,8 +64,8 @@ Parameters supported for `dataset_show`
 
 | Parameter | Type | Description | Usage |
 | --------- | ---- | ----------- | ----- |
-| include   | String | comma-separate list of resources to 'side-load' | `client#dataset_list(include: 'organizations,sites')` |
-| fields    | nested | allows the client to specify a subset of attributes to be returned by the API | `client#dataset_list(fields: { datasets: 'title,url'})` |
+| include   | String | comma-separate list of resources to 'side-load' | `client#dataset_show(include: 'organizations,sites')` |
+| fields    | nested | allows the client to specify a subset of attributes to be returned by the API | `client#dataset_show(fields: { datasets: 'title,url'})` |
 
 Make queries for datasets
 
