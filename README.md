@@ -77,6 +77,22 @@ response = client.dataset_show('4df13_11', include: 'organizations,groups')
 # => returns a Faraday::Response object
 ```
 
+### Learn how the parameters turn into request urls
+
+If you're curious about how urls are turned into API calls there are public methods that return the urls that would be created
+based on the parameters you pass in. I'm a fan of not completely abstracting the underlying API, and I also like urls a lot so
+we have these methods to allow developers to learn how urls are constructed.
+
+```ruby
+client = Opendata.new('https://opendata.arcgis.com')
+
+client.dataset_list_url(q: 'census', page: { size: 25 }, include: 'organizations,sites', sort: '-updated_at')
+#=> '/api/v2/datasets?q=census&page%5Bsize%5D=25&include=organizations%2Csites&sort=-updated_at'
+
+client.dataset_show_url('5353e1550e964d39b9bdde5ff391ab09_0', include: 'organizations')
+#=> '/api/v2/datasets/5353e1550e964d39b9bdde5ff391ab09_0?include=organizations'
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. ~~You can also run `bin/console` for an interactive prompt that will allow you to experiment.~~ `bin/console` is currently not working

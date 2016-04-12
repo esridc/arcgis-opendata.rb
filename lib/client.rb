@@ -46,6 +46,8 @@ module Opendata
       DATASETS_API_PATH + "/#{id}" + param_to_query_string(params)
     end
 
+    private
+
     def param_to_query_string(params)
       adjusted_params = {}
 
@@ -65,8 +67,6 @@ module Opendata
 
       query_string == "" ? query_string : "?#{query_string}"
     end
-
-    private
     
     attr_reader :connection
 
