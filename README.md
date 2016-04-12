@@ -57,7 +57,7 @@ Parameters supported for `dataset_list`
 | include   | String | comma-separate list of resources to 'side-load' | `client#dataset_list(include: 'organizations,sites')` |
 | fields    | nested | allows the client to specify a subset of attributes to be returned by the API | `client#dataset_list(fields: { datasets: 'title,url'})` |
 | filter    | nested | filter the datasets on filterable attributes | `client#dataset_list(filter: { content: 'spatial dataset'})` |
-| page      | nested | specify paging parameters. | `client#dataset_list(page: { size: 25, number: 2})`
+| page      | nested | specify paging parameters. | `client#dataset_list(page: { size: 25, number: 2})` |
 
 Parameters supported for `dataset_show`
 
@@ -68,14 +68,17 @@ Parameters supported for `dataset_show`
 
 
 Make queries for datasets
+
 ```ruby
 client = Opendata.new('https://opendata.arcgis.com')
 
 response = client.dataset_list(q: 'census', page: { size: 25}, include: 'organizations')
 # => returns a Faraday::Response object
+
 ```
 
 Fetch a single dataset
+
 ```ruby
 client = Opendata.new('https://opendata.arcgis.com')
 
