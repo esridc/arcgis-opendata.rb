@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/esridc/arcgis-opendata.rb.svg?branch=master)](https://travis-ci.org/esridc/arcgis-opendata.rb)
+[![Gem Version](https://badge.fury.io/rb/arcgis-opendata.svg)](https://badge.fury.io/rb/arcgis-opendata)
 
 # Opendata
 
