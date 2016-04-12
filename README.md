@@ -5,6 +5,7 @@
 ## TODO
 
 - use webmock + vcr or some alternative strategy for mocking http calls
+- add GET requests for groups, sites, organizations, and pages resources
 
 ## Installation
 
@@ -110,7 +111,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/opendata.
+Bug reports and pull requests are welcome on GitHub at https://github.com/esridc/arcgis-opendata.rb.
 
 
 ## License
