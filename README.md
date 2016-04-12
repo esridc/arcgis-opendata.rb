@@ -5,9 +5,9 @@
 Add this line to your application's Gemfile:
 
 Reference the latest source directly
-````ruby
+```ruby
 gem "arcgis-opendata", :git => "git://github.com/esridc/arcgis-opendata.rb.git", require: 'opendata'
-````
+```
 
 From rubygems.org
 ```ruby
@@ -28,30 +28,30 @@ The main class the gem provides is `Opendata::Client`, which can be used to quer
 resources from the ArcGIS Open Data API
 
 Instantiate an Opendata::Client instance
-````ruby
+```ruby
 client = Opendata::Client.new('https://opendata.arcgis.com')
-````
+```
 
 You can also instantiate an instance directly from the Opendata module
-````ruby
+```ruby
 client = Opendata.new('https://opendata.arcgis.com')
-````
+```
 
 Make queries for datasets
-````ruby
+```ruby
 client = Opendata.new('https://opendata.arcgis.com')
 
 response = client.dataset_list(q: 'census', page: { size: 25}, include: 'organizations')
 # => returns a Faraday::Response object
-````
+```
 
 Fetch a single dataset
-````ruby
+```ruby
 client = Opendata.new('https://opendata.arcgis.com')
 
 response = client.dataset_show('4df13_11', include: 'organizations,groups')
 # => returns a Faraday::Response object
-````
+```
 
 ## Development
 
