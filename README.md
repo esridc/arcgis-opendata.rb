@@ -37,6 +37,30 @@ You can also instantiate an instance directly from the Opendata module
 client = Opendata.new('https://opendata.arcgis.com')
 ```
 
+### Example Dataset Queries
+
+Search Parameters are JSONAPI compliant. To learn more about the JSONAPI parameters go to their section
+about [fetching data](http://jsonapi.org/format/#fetching) at jsonapi.org
+
+Parameters supported for `dataset_list`
+
+| Parameter | Type | Description | Usage |
+| --------- | ---- | ----------- | ----- |
+| q         | String | query to perform against the datasets resource | `client#dataset_list(q: 'census')` |
+| sort      | String | specifies sort criteria. prepend with a '-' to signify a descending sort| `client#dataset_list(sort: '-updated_at')` |
+| include   | String | comma-separate list of resources to 'side-load' | `client#dataset_list(include: 'organizations,sites')` |
+| fields    | nested | allows the client to specify a subset of attributes to be returned by the API | `client#dataset_list(fields: { datasets: 'title,url'})` |
+| filter    | nested | filter the datasets on filterable attributes | `client#dataset_list(filter: { content: 'spatial dataset'})` |
+| page      | nested | specify paging parameters. | `client#dataset_list(page: { size: 25, number: 2})`
+
+Parameters supported for `dataset_show`
+
+| Parameter | Type | Description | Usage |
+| --------- | ---- | ----------- | ----- |
+| include   | String | comma-separate list of resources to 'side-load' | `client#dataset_list(include: 'organizations,sites')` |
+| fields    | nested | allows the client to specify a subset of attributes to be returned by the API | `client#dataset_list(fields: { datasets: 'title,url'})` |
+
+
 Make queries for datasets
 ```ruby
 client = Opendata.new('https://opendata.arcgis.com')
