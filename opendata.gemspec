@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Ruby Client for the ArcGIS Open Data API.}
   spec.description   = %q{Ruby Client for the ArcGIS Open Data API built on top of Faraday.}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/esridc/arcgis-opendata.rb"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
