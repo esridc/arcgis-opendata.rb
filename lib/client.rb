@@ -6,18 +6,26 @@ module Opendata
   VERSION = '0.0.1'.freeze
 
   class Client
-    
+
+    # Constructor for Opendata::Client instances
+    # @param url [String] the base url to the open data API
+    # @param options [Hash] assorted options for instantiating the Opendata::Client instance
+    # @return [Object] the Opendata::Client instance which is a simple wrapper around a Faraday::Connection instance
     def initialize(url = nil, options = {})
       opts = options.merge(DEFAULT_HEADERS)
       @connection = Faraday.new(url, opts)
     end
 
-    # For making requets at /api/v2/datasets
+    # Makes requests for 'logical collections' of Dataset resources (zero-to-many potential dataset resources)
+    # @param params [Hash] query parameters for Dataset resources
+    # @return [Object] Faraday::Response object
     def dataset_list(params = {})
       connection.get(DATASETS_API_PATH + param_to_query_string(params))
     end
 
-    # For making requests at /api/v2/datasets/{:id}
+    # Makes requests for a 'logical object' for a specific Dataset resource (zero-to-one potential dataset resources)
+    # @param id [String] The dataset id
+    # @param params [Hash] Additional request parameters
     def dataset_show(id, params = {})
       raise '#dataset_show must receive a dataset id' if id.nil?
 
