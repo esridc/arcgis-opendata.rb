@@ -34,7 +34,7 @@ Or install it yourself as:
 
 If you want to generate docs locally you can do so with yardoc
 
-    $ bundle
+    $ yardoc
 
 And then:
 
